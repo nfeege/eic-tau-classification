@@ -36,7 +36,7 @@ This study uses Monte Carlo simulated data for an EIC experiment. The data are g
 1. Simulation of the __physics process__, i.e. generating all the particles that result from the collision of an electron with a proton.
 2. Simulation of the __detector response__ to the genreated particles, i.e. predicting what the real EIC experiment could actually measure and with what precision. This adds uncertainties reflecting the expected performance of the experiment to the simulated particles.
 
-We use two input data files:
+We use these input data files:
 * `data/jets_lq_tau_3pi_r05_p250_e20.csv`: These are the signal events. The incoming electrons convert into taus, which subsequently decay into three charged pions. Jets are created from the collision, as well as the decay of the tau.
 * `data/jets_dis_nc_r05_p250_e20.csv`: These are background events. Jets are created from the collision. The electrons keep their identity and can be detected after the collision.
 * `data/jets_dis_cc_r05_p250_e20.csv`: These are background events. Jets are created from the collision. The electron converts into a neutrino that escapes detection, which is a process well described by the Standard Model.
@@ -50,3 +50,7 @@ See the Jupyter notebook for this analysis [eic-tau-classification.ipynb](eic-ta
 
 ### Conclusion
 Using the AdaBoost decision tree classifier in scikit-learn improvoes the true positive rate of selecting tau-jets by 80% compared to an event selection based on manually chosen cuts. The false positive rate is below 1% for both methods.
+
+Neither of these methods could reliably identify a single tau jet in a background of over 100 million hadron jets. However, in an analysis of EIC data, the tau identification is only one step of the overall event classification. In addition to finding a tau candidate, analyzing event topologies (like the angle between multiple jets found in a single electron-proton collision) will help to reduce the false positive rate, i.e. the misidentification of 'Standard Model' background events as 'Beyond the Standard Model' electron-to-tau conversion events.
+
+Moreover, the design of the experiment and development of reconstruction algorithms are still evolving. By the time the EIC actually starts operating, the capabilities of the experiment itself to measure energies, charged tracks, and jets may have improved. This would lead to a better quality of input data for tau identification. For example, a more precise jet energy measurement by the experiment could reduce the widths of the signal and background distributions shown in the section on cut-based selection of this study. The reduced widths would improve the separation of signal and background.
